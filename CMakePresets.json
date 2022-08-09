@@ -1,30 +1,47 @@
 {
-    "version": 2,
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23
+    },
     "configurePresets": [
         {
-            "name": "Inheritance_debug",
-            "displayName": "Inheritance_debug",
-            "description": "Using compilers for Visual Studio 16 2019 (x64 architecture)",
+            "name": "config-default",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_CXX_FLAGS": "/MP /EHa /DWIN32 /std=c++178"
+            }
+        },
+        {
+            "name": "vc19-x64-rel",
+            "inherits":["config-default"],
+            "displayName": "vc19-x64-rel",
+            "description": "Used for msvc 2019 toolset targeting on x64 system in release mode",
             "generator": "Visual Studio 16 2019",
             "toolset": "host=x64",
             "architecture": "x64",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-                "CMAKE_CXX_FLAGS": "/MP /EHsc"
+                "CMAKE_BUILD_TYPE":"Release"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "Inheritance_debug",
-            "description": "",
-            "displayName": "Inheritance_debug",
-            "configurePreset": "Inheritance_debug",
-            "configuration": "Debug",
-            "verbose": false,
+            "name": "build-default",
+            "hidden": true,
+            "configurePreset": "config-default",
+            "verbose": true,
             "nativeToolOptions": ["/m"]
+        },
+        {
+            "name": "vc19-x64-rel",
+            "inherits":["build-default"],
+            "displayName": "vc19-x64-rel",
+            "description": "Used for msvc 2019 toolset targeting on x64 system in release mode",
+            "configurePreset": "vc19-x64-rel",
+            "configuration": "Release"
         }
     ]
 }
