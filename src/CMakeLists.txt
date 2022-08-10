@@ -1,1 +1,2 @@
 add_subdirectory(Inheritance)
+add_subdirectory(GoogleTest)

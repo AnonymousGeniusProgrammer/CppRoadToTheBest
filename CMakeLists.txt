@@ -4,6 +4,12 @@ Project("CppRoadToTheBest")
 
 include(CMakePrintHelpers)
 
+# include CTest module, enable CTest functions
+# this command is supposed to be in project root directory
+# since CTest expects to find a test file in build directory root
+# TODO: how to cooperate with presets?
+enable_testing()
+
 # SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Runtime directory" FORCE)
 
 # set(RW_BUILD_WITH_LIBRARIES "yaobi;pqp;fcl;sdurw_qhull;sdurw_csgjs;sdurw_assimp;sdurw_zlib;sdurw_unzip;sdurw_algorithms;sdurw_pathplanners;sdurw_pathoptimization;sdurw_simulation;sdurw_opengl;sdurw_assembly;sdurw_task;sdurw_calibration;sdurw_csg;sdurw_control;sdurw_proximitystrategies;sdurw;sdurw_core;sdurw_common;sdurw_math")

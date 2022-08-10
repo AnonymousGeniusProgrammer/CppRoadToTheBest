@@ -12,6 +12,17 @@
             "stopAtEntry": false,
             "cwd": "D:\\Dev\\CppRoadToTheBest\\out\\build\\Inheritance_debug\\bin\\Debug",
             "console": "internalConsole",
+            "preLaunchTask": "msvc-cmake-build",
+        },
+        {
+            "name": "test-automation",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:\\Dev\\Learning\\CppRoadToTheBest\\out\\build\\vc19-x64-rel\\bin\\Release\\hello_test.exe",
+            "cwd": "C:\\Dev\\Learning\\CppRoadToTheBest\\out\\build\\vc19-x64-rel\\bin\\Release\\",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "requireExactSource": true,
             "preLaunchTask": "msvc-cmake-build"
         }
     ]

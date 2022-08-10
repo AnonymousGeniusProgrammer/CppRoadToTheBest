@@ -11,7 +11,10 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-                "CMAKE_CXX_FLAGS": "/MP /EHa /DWIN32 /std=c++178"
+                "CMAKE_CXX_FLAGS": "/MP /EHa /DWIN32 /std:c++17",
+                "CMAKE_RUNTIME_OUTPUT_DIRECTORY":"${sourceDir}/out/build/${presetName}/bin",
+                "CMAKE_LIBRARY_OUTPUT_DIRECTORY":"${sourceDir}/out/build/${presetName}/libs",
+                "CMAKE_ARCHIVE_OUTPUT_DIRECTORY":"${sourceDir}/out/build/${presetName}/libs"
             }
         },
         {
@@ -21,10 +24,7 @@
             "description": "Used for msvc 2019 toolset targeting on x64 system in release mode",
             "generator": "Visual Studio 16 2019",
             "toolset": "host=x64",
-            "architecture": "x64",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE":"Release"
-            }
+            "architecture": "x64"
         }
     ],
     "buildPresets": [
@@ -42,6 +42,29 @@
             "description": "Used for msvc 2019 toolset targeting on x64 system in release mode",
             "configurePreset": "vc19-x64-rel",
             "configuration": "Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-preset-1",
+            "displayName": "test-preset-1",
+            "configurePreset": "vc19-x64-rel",
+            "configuration": "Release", // for multi-configuration generators, could have multiple build configuration using the same configuration file
+            "output": {
+                "verbosity": "default",
+                "debug": false, // ctest --debug provide internal CTets information
+                "outputLogFile": "${sourceDir}/out/log/test-log.txt", //path to a log file
+                "labelSummary": true // not setting ctest --no-label-summary
+            },
+            "filter": {
+                // equivalent to ctest --exclude-regex
+                "exclude": {
+                    "name": "test_suit_2"
+                }
+            },
+            "execution": {
+                "stopOnFailure": false
+            }
         }
     ]
 }
